@@ -1,0 +1,28 @@
+.portrait{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.social-icon > li{
+    list-style: none;
+    display: inline-block;
+}
+
+.grey-bg1{
+   background-color: #F5F5F5;
+}
+
+.grey-bg2{
+    background-color: #EFEBE9;
+}
+
+.px80-below{
+    padding-top: 80px;
+}
+
+.skills > span{
+    background-color: #a19f9f;
+    padding: 5px;
+    border-radius: 10px;
+}
