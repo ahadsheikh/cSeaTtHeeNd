@@ -1,18 +1,14 @@
 <?php
 include_once('config.php');
+include_once('Database/database.php');
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $db = '';
-    if (file_exists('db.json')) {
-        $json = file_get_contents('db.json');
-        $db = json_decode($json, true);
-    } else {
-        $db = array();
-    }
-    if ((int)$id - 1 < count($db)) {
-        $obj = $db[$id - 1];
-    } else {
+    
+    $db = new Database($BASE_DIR . '/' . $DB_PATH);
+    $obj = $db->get($id);
+
+    if(empty($obj)) {
         header('Location: 404.php');
         die();
     }

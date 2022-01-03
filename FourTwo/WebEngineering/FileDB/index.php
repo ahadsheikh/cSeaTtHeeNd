@@ -1,14 +1,10 @@
 <?php
 
 include_once('config.php');
+include_once('Database/database.php');
 
-$db = '';
-if (file_exists('db.json')) {
-    $json = file_get_contents('db.json');
-    $db = json_decode($json, true);
-} else {
-    $db = array();
-}
+$db = new Database($BASE_DIR . '/' . $DB_PATH);
+$data = $db->list();
 
 ?>
 
@@ -21,13 +17,13 @@ if (file_exists('db.json')) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>DB Home</title>
+    <title>data Home</title>
 </head>
 
 <body>
     <nav class="container">
         <div class="flex-container" style="width: 100%; justify-content: space-between;">
-            <a class="btn-a" href="<?php echo $BASE_URL ?>"><h1>DB Home</h1></a>
+            <a class="btn-a" href="<?php echo $BASE_URL ?>"><h1>data Home</h1></a>
         </div>
     </nav>
     <div class="flex-container" style="justify-content: center;">
@@ -41,7 +37,7 @@ if (file_exists('db.json')) {
                     <th>ISBN</th>
                     <th>Option</th>
                 </tr>
-                <?php foreach ($db as $key => $obj) : ?>
+                <?php foreach ($data as $key => $obj) : ?>
 
                     <tr class="obj-row">
                         <td class="obj-item">
@@ -53,7 +49,7 @@ if (file_exists('db.json')) {
                         <td class="obj-item"><?php echo $obj['available'] ? 'True' : 'False'; ?></td>
                         <td class="obj-item"><?php echo $obj['isbn']; ?></td>
                         <td>
-                            <a href="<?php echo $BASE_URL . '/' . 'delete.php?id=' . $key + 1; ?>">
+                            <a href="<?php echo $BASE_URL . '/' . 'delete.php?id=' . (int)($key + 1); ?>">
                                 <button class="btn-delete">Delete</button>
                             </a>
                         </td>

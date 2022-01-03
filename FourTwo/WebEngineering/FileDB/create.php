@@ -1,24 +1,22 @@
 <?php
 include_once('config.php');
+include_once('Database/database.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $db = '';
-    if (file_exists('db.json')) {
-        $json = file_get_contents('db.json');
-        $db = json_decode($json, true);
-    } else {
-        $db = array();
-    }
     $obj = array(
         'title' => $_POST['title'],
         'author' => $_POST['author'],
         'available' => $_POST['available'] === 'true' ? true : false,
         'isbn' => $_POST['isbn']
     );
-    array_push($db, $obj);
-    $db_string = json_encode($db);
-    file_put_contents('db.json', $db_string);
-    header('Location: ' . $BASE_URL . '/show.php?id=' . count($db));
+
+    $db = new Database($BASE_DIR . '/' . $DB_PATH);
+    $status = $db->create($obj);
+    if($status){
+        header('Location: ' . $BASE_URL . '/show.php?id=' . $status);
+    }else{
+        header('Location: ' . $BASE_URL . '/error.php');
+    }
     die();
 }
 ?>
