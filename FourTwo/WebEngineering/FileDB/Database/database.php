@@ -16,12 +16,9 @@ class Database{
         return $db;
     }
     private function write_data($data_arr){
-        if(file_exists($this->dbPath)){
-            $json_sting = json_encode($data_arr);
-            file_put_contents('db.json', $json_sting);
-            return true;
-        }
-        return false;
+        $json_sting = json_encode($data_arr);
+        file_put_contents('db.json', $json_sting);
+        return true;
     }
 
     private function validate($data){

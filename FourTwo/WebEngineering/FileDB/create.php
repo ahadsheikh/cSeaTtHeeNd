@@ -3,10 +3,11 @@ include_once('config.php');
 include_once('Database/database.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    print_r($_POST);
     $obj = array(
         'title' => $_POST['title'],
         'author' => $_POST['author'],
-        'available' => $_POST['available'] === 'true' ? true : false,
+        'available' => (boolean)$_POST['available'] ? true : false,
         'isbn' => $_POST['isbn']
     );
 
@@ -55,8 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="flex-container input-group">
                     <label class="input-label" for="">Availablity</label>
                     <div class="flex-container" style="width: 80%; justify-content: start;">
-                        <div><input type="radio" name="available" required> True</div>
-                        <div><input type="radio" name="available"> False</div>
+                        <div><input type="radio" name="available" value="1" required> True</div>
+                        <div><input type="radio" name="available" value="0"> False</div>
                     </div>
                 </div>
                 <div class="flex-container input-group">

@@ -23,7 +23,7 @@ $data = $db->list();
 <body>
     <nav class="container">
         <div class="flex-container" style="width: 100%; justify-content: space-between;">
-            <a class="btn-a" href="<?php echo $BASE_URL ?>"><h1>data Home</h1></a>
+            <a class="btn-a" href="<?php echo $BASE_URL ?>"><h1>DB Home</h1></a>
         </div>
     </nav>
     <div class="flex-container" style="justify-content: center;">
