@@ -45,7 +45,7 @@ if (file_exists('db.json')) {
 
                     <tr class="obj-row">
                         <td class="obj-item">
-                            <a href="<?php echo $BASE_URL . '/' . 'show.php?id=' . $key + 1; ?>">
+                            <a href="<?php echo $BASE_URL . '/' . 'show.php?id=' . (int)($key + 1); ?>">
                                 <?php echo $obj['title']; ?>
                             </a>
                         </td>
